@@ -1,95 +1,72 @@
-1) Escreva um código que utilize o loop for/of para iterar e imprimir cada elemento de um array.
+1) Faça uma função que aceite vários arrays como argumentos e retorne um único array contendo todos os elementos dos arrays fornecidos, utilizando Spread Operator.
+Dica: é possível usar o spread operator diretamente em um parâmetro de função para "espalhar" seu conteúdo, por exemplo `function funcaoExemplo(...params)`.
 
 ```js
-function imprimeElementos(arr) {
-    for (let elemento of arr) {
-        console.log(elemento); // Imprime cada elemento do array
-    }
+function concatArrays(...arrays) {
+    return [].concat(...arrays); // operador spread para concatenar os arrays
 }
 
-const meuArray = ['a', 'b', 'c'];
-imprimeElementos(meuArray);
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const arr3 = [5, 6];
+const arraysConcatenados = concatArrays(arr1, arr2, arr3);
+console.log(arraysConcatenados); // Saída: [1, 2, 3, 4, 5, 6]
 ```
 
-2) Crie uma função que receba uma array e imprima no console o número do índice e o elemento.
+2) Crie um array de números chamado `valores`. Depois,escreva um programa que some todos os elementos deste array utilizando o método **reduce**.
 
 ```js
-const listinha = ['banana', 'gatinho', 'brócolis'];
-
-function imprimeIndiceEElemento(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    console.log(`índice ${i}, elemento ${arr[i]}`);
-  }
-}
-
-imprimeIndiceEElemento(listinha);
+const valores = [10, 20, 30, 40, 50];
+const soma = valores.reduce((acumulador, valorAtual) => acumulador + valorAtual, 0);
+console.log("Soma dos valores:", soma);
 ```
 
-3) Crie uma função que receba uma array de números inteiros e retorne a soma dos elementos.
+3) Considere duas listas de cores:
+`const coresLista1 = ['Vermelho', 'Verde', 'Azul', 'Amarelo', 'Vermelho']`
+`const coresLista2 = ['Laranja', 'Verde', 'Roxo', 'Azul']`
+Crie um programa que una essas duas listas, removendo cores duplicadas e exiba a lista final.
 
 ```js
-const listaNumeros = [10, 11, 12, 10, 11, 12, 10, 11, 12, 10, 11, 12];
+const coresLista1 = ['Vermelho', 'Verde', 'Azul', 'Amarelo', 'Vermelho'];
+const coresLista2 = ['Laranja', 'Verde', 'Roxo', 'Azul'];
 
-function soma(arr) {
-  let total = 0
-  for (let i = 0; i < arr.length; i++) {
-    total += arr[i];
-  }
-  return total;
-}
-
-console.log(soma(listaNumeros));
+const coresUnicas = [...new Set([...coresLista1, ...coresLista2])];
+console.log('Cores sem repetir: ', coresUnicas);
 ```
 
-4) Crie uma função que receba uma array de números inteiros e retorne o menor valor e o maior valor da array, no seguinte formato: 'o menor número é X e o maior número é Y'.
+4) Escreva uma função que receba um array de números e retorne um array contendo apenas os números pares.
 
 ```js
-const arrMenoresMaiores = [5, 37, 18, 59, 12, -5];
-
-function imprimeMaiorEMenor(arr) {
-
-  let maior = 0;
-  let menor = 0;
-
-  for(let i = 0; i < arr.length; i++) {
-    if (arr[i] > maior) {
-      maior = arr[i]
-    }
-    if (arr[i] < menor) {
-      menor = arr[i]
-    }
-  }
-  return `o maior número é ${maior} e o menor número é ${menor}`;
+function filtraNumerosPares(arr) {
+    return arr.filter(num => num % 2 === 0); // Filtra apenas os números pares
 }
 
-console.log(imprimeMaiorEMenor(arrMenoresMaiores));
+const numArray = [1, 2, 3, 4, 5, 6];
+const listaNumerosPares = filtraNumerosPares(numArray);
+console.log(listaNumerosPares); // Saída: [2, 4, 6]
 ```
 
-5) Crie um programa que utilize um laço for para percorrer uma array `const numeros = [3, 8, 12, 5, 6, 10, 7, 2, 9, 14]` e exibir no console apenas os números pares contidos nesse array.
+5) Crie uma função que filtre os números de um array que são múltiplos de 3 e maiores que 5.
 
 ```js
-const numeros = [3, 8, 12, 5, 6, 10, 7, 2, 9, 14];
-console.log('Números pares do array:');
+const listaNumeros = [3, 6, 9, 4, 12, 2, 7];
 
-for (let i = 0; i < numeros.length; i++) {
-  if (numeros[i] % 2 === 0) {
-    console.log(numeros[i]);
-  }
+function filtraNumeros(arr) {
+    return arr.filter(num => num % 3 === 0 && num > 5); // Filtra números múltiplos de 3 e maiores que 5
 }
+
+const numerosFiltrados = filtraNumeros(listaNumeros);
+console.log(numerosFiltrados); // Saída: [6, 9, 12]
 ```
 
-6) Crie um programa que calcule a média dos números presentes em um array utilizando um loop for.
+6) Crie uma função que receba um array de números e retorne a soma de todos os elementos.
 
 ```js
-const numeros = [10, 8, 6, 9, 7, 5];
-let soma = 0;
-
-for (let i = 0; i < numeros.length; i++) {
-  soma += numeros[i];
+function somaElementosDoArray(arr) {
+  return arr.reduce((acum, atual) => acum + atual, 0); // Soma os elementos do array
 }
 
-const media = soma / numeros.length;
-console.log('Array:', numeros);
-console.log('Média dos números:', media);
+const listaNumeros = [1, 2, 3, 4, 5];
+const somaTotal = somaElementosDoArray(listaNumeros);
+console.log(somaTotal); // Saída: 15
 ```
-
