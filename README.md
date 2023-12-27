@@ -1,95 +1,97 @@
-1) Escreva um código que utilize o loop for/of para iterar e imprimir cada elemento de um array.
+1) Utilize o método forEach para imprimir cada elemento de um array juntamente com seu índice.
 
 ```js
-function imprimeElementos(arr) {
-    for (let elemento of arr) {
-        console.log(elemento); // Imprime cada elemento do array
-    }
-}
+const meuArray = ['a', 'b', 'c', 'd', 'e'];
 
-const meuArray = ['a', 'b', 'c'];
-imprimeElementos(meuArray);
+meuArray.forEach((elemento, indice) => {
+  console.log(`Índice: ${indice}, Valor: ${elemento}`);
+});
 ```
 
-2) Crie uma função que receba uma array e imprima no console o número do índice e o elemento.
+2) Crie uma função chamada `executaOperacaoEmArray` que recebe dois parâmetros: um array e uma função de callback que executa alguma operação matemática. Essa função deve iterar por cada elemento do array e aplicar a função de callback em cada um dos elementos, imprimindo o resultado da operação no console.
 
 ```js
-const listinha = ['banana', 'gatinho', 'brócolis'];
-
-function imprimeIndiceEElemento(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    console.log(`índice ${i}, elemento ${arr[i]}`);
-  }
+function executaOperacaoEmArray(array, funcaoCallback) {
+    return array.map(funcaoCallback); // Executa a função de callback em cada elemento do array
 }
 
-imprimeIndiceEElemento(listinha);
-```
-
-3) Crie uma função que receba uma array de números inteiros e retorne a soma dos elementos.
-
-```js
-const listaNumeros = [10, 11, 12, 10, 11, 12, 10, 11, 12, 10, 11, 12];
-
-function soma(arr) {
-  let total = 0
-  for (let i = 0; i < arr.length; i++) {
-    total += arr[i];
-  }
-  return total;
+function dobraNumero(num) {
+    return num * 2; // Função de exemplo para dobrar o número
 }
 
-console.log(soma(listaNumeros));
+const listaNumeros = [1, 2, 3];
+const listaNumerosDobrados = executaOperacaoEmArray(listaNumeros, dobraNumero);
+console.log(listaNumerosDobrados); // Saída: [2, 4, 6]
 ```
 
-4) Crie uma função que receba uma array de números inteiros e retorne o menor valor e o maior valor da array, no seguinte formato: 'o menor número é X e o maior número é Y'.
+3) Você recebeu um array `numeros` contendo valores numéricos. Crie um programa que verifique se um número específico está presente nesse array. Se estiver, o programa deve retornar a posição (índice) desse número. Caso contrário, se o número não estiver presente, o programa deve retornar "-1".
 
 ```js
-const arrMenoresMaiores = [5, 37, 18, 59, 12, -5];
-
-function imprimeMaiorEMenor(arr) {
-
-  let maior = 0;
-  let menor = 0;
-
-  for(let i = 0; i < arr.length; i++) {
-    if (arr[i] > maior) {
-      maior = arr[i]
-    }
-    if (arr[i] < menor) {
-      menor = arr[i]
-    }
-  }
-  return `o maior número é ${maior} e o menor número é ${menor}`;
-}
-
-console.log(imprimeMaiorEMenor(arrMenoresMaiores));
-```
-
-5) Crie um programa que utilize um laço for para percorrer uma array `const numeros = [3, 8, 12, 5, 6, 10, 7, 2, 9, 14]` e exibir no console apenas os números pares contidos nesse array.
-
-```js
-const numeros = [3, 8, 12, 5, 6, 10, 7, 2, 9, 14];
-console.log('Números pares do array:');
+const numeros = [10, 20, 30, 40, 50];
+const numeroProcurado = 30;
+let posicao = -1;
 
 for (let i = 0; i < numeros.length; i++) {
-  if (numeros[i] % 2 === 0) {
-    console.log(numeros[i]);
+  if (numeros[i] === numeroProcurado) {
+    posicao = i;
+    break;
   }
 }
+
+console.log(`Posição do número ${numeroProcurado}: ${posicao}`);
 ```
 
-6) Crie um programa que calcule a média dos números presentes em um array utilizando um loop for.
+4) Você recebeu dois arrays de nomes contendo os alunos da Turma A e da Turma B. 
 
 ```js
-const numeros = [10, 8, 6, 9, 7, 5];
-let soma = 0;
+const nomesTurmaA = [
+  'João Silva',
+  'Maria Santos',
+  'Pedro Almeida'
+];
 
-for (let i = 0; i < numeros.length; i++) {
-  soma += numeros[i];
-}
-
-const media = soma / numeros.length;
-console.log('Array:', numeros);
-console.log('Média dos números:', media);
+const nomesTurmaB = [
+  'Carlos Oliveira',
+  'Ana Souza',
+  'Lucas Fernandes'
+];
 ```
 
+Utilize o método `concat()` para unir os arrays das turmas A e B em um único array chamado `todasAsTurmas`. Depois, utilize o método `find()` para buscar um aluno específico pelo nome no array `todosAlunos`. Exiba no console uma mensagem informando o nome do aluno procurado; caso não exista na lista, retorne uma mensagem de aviso, por exemplo `Aluno não encontrado`.
+
+```js
+const todosAlunos = nomesTurmaA.concat(nomesTurmaB);
+const alunoProcurado = todosAlunos.find(nome => nome === 'Ana Souza');
+
+if (alunoProcurado) {
+  console.log('Aluno encontrado:', alunoProcurado);
+} else {
+  console.log('Aluno não encontrado.');
+}
+```
+
+5) Considere um array de números inteiros.
+
+```js
+const numeros = [6, 9, 12, 15, 18, 21];
+```
+Utilize o método `forEach()` para multiplicar cada elemento do array por 3 e exibir o resultado de cada multiplicação. Depois, utilize o método `findIndex()` para encontrar o índice do número 18 no array.
+
+```js
+const numeros = [6, 9, 12, 15, 18, 21];
+
+console.log('Elementos do array multiplicados por 3:');
+
+numeros.forEach(numero => {
+  const resultado = numero * 3;
+  console.log(resultado);
+});
+
+const indiceDoNumero18 = numeros.findIndex(numero => numero === 18);
+
+if (indiceDoNumero18 !== -1) {
+  console.log(`O número 18 está no índice ${indiceDoNumero18}.`);
+} else {
+  console.log('O número 18 não está presente no array.');
+}
+```
